@@ -1,0 +1,22 @@
+def Anagrams(self, words, n):
+        '''
+        words: list of word
+        n:      no of words
+        return : list of group of anagram {list will be sorted in driver code (not word in grp)}
+        '''
+        dic = {}
+        dick = {}
+        res = []
+        for i in range(n):
+            k = tuple(sorted(list(words[i])))
+            # print("k is ",k)
+            if k not in dick:
+                dick[k] = i
+                dic[k] = [words[i]]
+            else:
+                dic[k].append(words[i])
+                dick[k] = i
+        inv_map = {v: k for k, v in dick.items()}
+        for i in sorted(inv_map.keys()):
+            res.append(dic[inv_map[i]])
+        return res
